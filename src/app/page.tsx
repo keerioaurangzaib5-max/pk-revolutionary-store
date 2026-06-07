@@ -18,62 +18,64 @@ export default function CinematicStorefront() {
       </header>
 
       {/* Hero Showcase Section (Moody 90s Editorial Aesthetic) */}
-      <main className="flex-grow pt-24 pb-12 px-4 max-w-md mx-auto w-full space-y-8">
-        
-        {/* Editorial Image Container */}
-        <div className="relative aspect-[3/4] w-full bg-neutral-950 border border-neutral-900 rounded-3xl overflow-hidden shadow-2xl group">
-          {/* Subtle overlay mimicking a vintage film grain gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)] z-10"></div>
+      <div className="w-full flex-grow flex justify-center">
+        <main className="w-full max-w-md px-4 pt-24 pb-12 space-y-8">
           
-          {/* Visual Placeholder for our Cinematic Golden-Hour Asset */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 space-y-2">
-            <span className="text-[10px] uppercase tracking-[0.3em] text-amber-500/80 font-bold">Studio Lookbook</span>
-            <p className="text-xs text-neutral-500 uppercase tracking-wider italic font-serif">"90s Cinema Aesthetic // Low Light Node"</p>
+          {/* Editorial Image Container */}
+          <div className="relative aspect-[3/4] w-full bg-neutral-950 border border-neutral-900 rounded-3xl overflow-hidden shadow-2xl group">
+            {/* Subtle overlay mimicking a vintage film grain gradient */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)] z-10"></div>
+            
+            {/* Visual Placeholder for our Cinematic Golden-Hour Asset */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 space-y-2">
+              <span className="text-[10px] uppercase tracking-[0.3em] text-amber-500/80 font-bold">Studio Lookbook</span>
+              <p className="text-xs text-neutral-500 uppercase tracking-wider italic font-serif">"90s Cinema Aesthetic // Low Light Node"</p>
+            </div>
+
+            {/* Floating Product Badge */}
+            <div className="absolute bottom-6 left-6 right-6 z-20 space-y-2">
+              <span className="text-[9px] uppercase tracking-widest bg-white text-black px-2 py-0.5 font-extrabold rounded">
+                Limited Run
+              </span>
+              <h2 className="text-2xl font-bold tracking-tight text-white drop-shadow-md">
+                Aether Black Techwear Shell
+              </h2>
+              <p className="text-xs text-neutral-300 line-clamp-2 font-light tracking-wide">
+                Waterproof structured tailoring engineered for urban utility. Infused with double-dyed matte fabrics.
+              </p>
+            </div>
           </div>
 
-          {/* Floating Product Badge */}
-          <div className="absolute bottom-6 left-6 right-6 z-20 space-y-2">
-            <span className="text-[9px] uppercase tracking-widest bg-white text-black px-2 py-0.5 font-extrabold rounded">
-              Limited Run
-            </span>
-            <h2 className="text-2xl font-bold tracking-tight text-white drop-shadow-md">
-              Aether Black Techwear Shell
-            </h2>
-            <p className="text-xs text-neutral-300 line-clamp-2 font-light tracking-wide">
-              Waterproof structured tailoring engineered for urban utility. Infused with double-dyed matte fabrics.
-            </p>
+          {/* Localized Price & Value Alignment Card */}
+          <div className="bg-neutral-950 border border-neutral-900 rounded-2xl p-5 flex justify-between items-center shadow-lg">
+            <div>
+              <span className="text-[10px] uppercase tracking-widest text-neutral-500 font-bold block">Launch Price</span>
+              <span className="text-xl font-black text-white mt-0.5 block">Rs. 9,180</span>
+            </div>
+            <div className="text-right space-y-0.5">
+              <span className="text-xs text-emerald-400 font-semibold block">✓ Free Delivery Across PK</span>
+              <span className="text-[10px] text-neutral-500 uppercase tracking-wider block">Cash on Delivery Available</span>
+            </div>
           </div>
-        </div>
 
-        {/* Localized Price & Value Alignment Card */}
-        <div className="bg-neutral-950 border border-neutral-900 rounded-2xl p-5 flex justify-between items-center shadow-lg">
-          <div>
-            <span className="text-[10px] uppercase tracking-widest text-neutral-500 font-bold block">Launch Price</span>
-            <span className="text-xl font-black text-white mt-0.5 block">Rs. 9,180</span>
+          {/* Action Button Segment linking directly to our validation engine */}
+          <div className="space-y-3">
+            <Link href="/checkout" className="block w-full text-center">
+              <button className="w-full bg-white text-black font-bold tracking-widest text-xs uppercase py-4 rounded-xl shadow-xl hover:bg-neutral-200 transition transform active:scale-[0.99] text-center">
+                Acquire Asset // Go to Checkout
+              </button>
+            </Link>
+            
+            <div className="flex justify-center items-center gap-2 text-[10px] text-neutral-600 uppercase tracking-widest pt-2">
+              <span className="h-1 w-1 bg-neutral-700 rounded-full"></span>
+              Secured via Vercel Edge Protection Node
+              <span className="h-1 w-1 bg-neutral-700 rounded-full"></span>
+            </div>
           </div>
-          <div className="text-right space-y-0.5">
-            <span className="text-xs text-emerald-400 font-semibold block">✓ Free Delivery Across PK</span>
-            <span className="text-[10px] text-neutral-500 uppercase tracking-wider block">Cash on Delivery Available</span>
-          </div>
-        </div>
 
-        {/* Action Button Segment linking directly to our validation engine */}
-        <div className="space-y-3">
-          <Link href="/checkout" className="block w-full text-center">
-            <button className="w-full bg-white text-black font-bold tracking-widest text-xs uppercase py-4 rounded-xl shadow-xl hover:bg-neutral-200 transition transform active:scale-[0.99] text-center">
-              Acquire Asset // Go to Checkout
-            </button>
-          </Link>
-          
-          <div className="flex justify-center items-center gap-2 text-[10px] text-neutral-600 uppercase tracking-widest pt-2">
-            <span className="h-1 w-1 bg-neutral-700 rounded-full"></span>
-            Secured via Vercel Edge Protection Node
-            <span className="h-1 w-1 bg-neutral-700 rounded-full"></span>
-          </div>
-        </div>
-
-      </main>
+        </main>
+      </div>
 
       {/* Studio Minimalist Footer */}
       <footer className="p-6 text-center border-t border-neutral-900 bg-neutral-950/20 text-[9px] uppercase tracking-[0.2em] text-neutral-600">

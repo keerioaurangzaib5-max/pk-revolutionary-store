@@ -1,89 +1,71 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
+import React from 'react';
 import Navigation from '@/components/Navigation';
 import ProductGrid from '@/components/ProductGrid';
 
-export default function CinematicStorefront() {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
+export default function Home() {
   return (
-    <div className="w-full min-h-screen bg-black text-neutral-100 font-sans antialiased selection:bg-neutral-800 flex flex-col overflow-x-hidden pt-28">
-      
-      {/* Premium Glassmorphic Header Navigation */}
+    <main className="w-full min-h-screen bg-black text-white overflow-x-hidden select-none">
+      {/* 1. STICKY TOP NAVIGATION MODULE */}
       <Navigation />
 
-      {/* Hero Showcase Section (Edge-to-Edge Cinematic Showcase) */}
-      <div className="w-full h-[85vh] md:h-screen relative flex items-center justify-center overflow-hidden">
-        {/* Full-width low-light background imagery simulation */}
-        <div className="absolute inset-0 bg-neutral-950">
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black z-10"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.6)_100%)] z-10"></div>
-          {/* Decorative cinematic scan placeholder */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center opacity-30">
-            <span className="text-[10px] uppercase tracking-[0.4em] text-neutral-500 font-mono mb-2">// WIDE SCREEN ASSET MATRIX //</span>
-            <span className="text-xs text-neutral-600 font-serif italic">"90s Cinema Aesthetic // Low Light Node 001"</span>
-          </div>
+      {/* 2. HERO CAMPAIGN BANNER (MASSIVE BUT SPACED) */}
+      <section className="w-full min-h-[85vh] flex flex-col items-center justify-center text-center px-4 md:px-8 pt-36 pb-12 border-b border-zinc-900 relative">
+        
+        {/* Release Subheading */}
+        <p className="text-zinc-500 font-mono text-[10px] md:text-xs tracking-[0.3em] uppercase mb-4 animate-pulse">
+          DROP 001 // CORE ARCHITECTURE
+        </p>
+
+        {/* Core Title */}
+        <h1 className="text-3xl md:text-6xl font-light tracking-[0.2em] text-white uppercase mb-6 max-w-4xl leading-tight">
+          AETHER BLACK TECHWEAR
+        </h1>
+
+        {/* Description Copy */}
+        <p className="text-zinc-400 font-light text-xs md:text-sm tracking-wide max-w-xl mx-auto mb-10 leading-relaxed">
+          Waterproof structured tailoring engineered for urban utility. 
+          Infused with double-dyed matte fabrics.
+        </p>
+
+        {/* 🎯 SEPARATED & CLEAN ACTION BUTTON GROUP */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full max-w-md mb-12 z-10">
+          <button 
+            onClick={() => {
+              const element = document.getElementById('grid-section');
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            className="w-full sm:w-auto bg-white text-black text-xs font-mono tracking-widest uppercase px-8 py-4 border border-white hover:bg-black hover:text-white transition-all duration-300"
+          >
+            ACQUIRE ASSET
+          </button>
+          <a 
+            href="/checkout" 
+            className="w-full sm:w-auto text-center bg-zinc-950 text-zinc-400 hover:text-white text-xs font-mono tracking-widest uppercase px-8 py-4 border border-zinc-800 hover:border-zinc-500 transition-all duration-300"
+          >
+            GO TO CHECKOUT
+          </a>
         </div>
 
-        {/* Floating Centered Hero Metadata */}
-        <div className={`relative z-20 max-w-4xl px-6 text-center space-y-6 transition-all duration-1000 ease-out transform ${
-          isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-        }`}>
-          <div className="space-y-2">
-            <span className="text-[10px] uppercase tracking-[0.3em] bg-white text-black px-3 py-1 font-extrabold rounded-sm inline-block">
-              Drop 001 // Core Architecture
-            </span>
-            <h1 className="text-4xl md:text-7xl font-light tracking-[0.15em] text-white uppercase leading-none pt-2">
-              Aether Black Techwear
-            </h1>
-            <p className="text-xs md:text-sm text-neutral-400 font-mono tracking-widest max-w-xl mx-auto pt-2 leading-relaxed">
-              Waterproof structured tailoring engineered for urban utility. Infused with double-dyed matte fabrics.
-            </p>
-          </div>
-
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 pt-4">
-            <Link href="/checkout" className="w-full sm:w-auto">
-              <button className="w-full sm:px-8 bg-white text-black font-mono tracking-widest text-[11px] uppercase py-4 rounded-sm shadow-xl hover:bg-neutral-200 transition transform active:scale-[0.99]">
-                Acquire Asset // Go to Checkout
-              </button>
-            </Link>
-            <button 
-              onClick={() => {
-                const element = document.getElementById('grid-section');
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
-              className="w-full sm:w-auto sm:px-8 bg-transparent hover:bg-white/5 text-white border border-neutral-800 hover:border-white font-mono tracking-widest text-[11px] uppercase py-4 rounded-sm transition"
-            >
-              Explore Collection
-            </button>
-          </div>
-
-          <div className="text-[10px] text-neutral-600 uppercase tracking-[0.2em] pt-6 flex justify-center items-center gap-2">
-            <span className="h-1 w-1 bg-neutral-700 rounded-full"></span>
-            Secured via Vercel Edge Protection Node
-            <span className="h-1 w-1 bg-neutral-700 rounded-full"></span>
-          </div>
+        {/* Tactical Footer Elements */}
+        <div className="mt-auto pt-6 border-t border-zinc-900/50 w-full max-w-lg">
+          <p className="text-[10px] font-mono tracking-[0.15em] text-zinc-600 uppercase mb-2">
+            SECURED VIA VERCEL EDGE PROTECTION NODE
+          </p>
+          <p className="text-[11px] font-serif italic tracking-widest text-zinc-500">
+            "90s Cinema Aesthetic // Low Light Node 001"
+          </p>
         </div>
-      </div>
 
-      {/* Massive Product Grid Section */}
+      </section>
+
+      {/* 3. FULL-WIDTH EDGE-TO-EDGE LOOKBOOK GRID */}
       <div id="grid-section" className="w-full">
         <ProductGrid />
       </div>
-
-      {/* Studio Minimalist Footer */}
-      <footer className="p-8 text-center border-t border-neutral-900 bg-neutral-950 text-[9px] uppercase tracking-[0.2em] text-neutral-600">
-        © 2026 PrepGenius Studios // Architectural Layout Node Alpha
-      </footer>
-
-    </div>
+    </main>
   );
 }

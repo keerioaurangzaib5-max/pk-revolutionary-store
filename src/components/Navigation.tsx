@@ -10,18 +10,18 @@ export default function Navigation() {
 
   return (
     <>
-      {/* Clean, sticky top navigation bar with solid black background and thin bottom border */}
-      <header className="fixed top-0 left-0 right-0 z-40 bg-black border-b border-zinc-900 h-16 flex items-center px-6 justify-between transition-all duration-300">
+      {/* Sticky Top Navigation Bar (Crisp Borders and Dedicated Spacing) */}
+      <header className="fixed top-0 left-0 right-0 w-full h-20 bg-black border-b border-zinc-900 px-6 flex items-center justify-between z-50">
         <Link href="/" className="group">
-          <h1 className="text-xs font-bold tracking-[0.25em] text-white uppercase hover:text-zinc-400 transition-colors">
-            PREPGENIUS <span className="text-zinc-500 font-normal">STUDIOS</span>
+          <h1 className="text-xs font-mono font-bold tracking-[0.25em] text-white uppercase hover:text-zinc-400 transition-colors">
+            PREPGENIUS STUDIOS
           </h1>
         </Link>
         
         <div className="flex items-center gap-6">
           <Link 
             href="/admin" 
-            className="text-[10px] uppercase font-mono tracking-widest text-zinc-500 hover:text-zinc-300 transition-colors"
+            className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 hover:text-zinc-300 transition-colors"
           >
             HQ Node
           </Link>

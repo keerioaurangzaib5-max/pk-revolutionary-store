@@ -40,69 +40,62 @@ const LOOKBOOK_PRODUCTS: Product[] = [
 
 export default function ProductGrid() {
   const { addToCart } = useCart();
-  const [isMounted, setIsMounted] = React.useState(false);
-
-  React.useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   return (
-    <section className="bg-black text-white w-full min-h-screen px-0 py-0 border-t border-zinc-900 overflow-hidden">
-      {/* Forced 3-Column Zero-Gap Grid displaying solid imagery wall */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-0 w-full min-h-screen">
-        {LOOKBOOK_PRODUCTS.map((product, index) => (
-          <div 
-            key={product.id} 
-            className={`group relative flex flex-col justify-end w-full h-[85vh] md:h-screen overflow-hidden border-b md:border-b-0 md:border-r border-zinc-900 last:border-0 transition-all duration-1000 ease-out ${
-              isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            } ${
-              index === 1 ? 'delay-150' : index === 2 ? 'delay-300' : ''
-            }`}
-          >
-            {/* Absolute Full Height/Width Image */}
-            <div className="absolute inset-0 w-full h-full bg-zinc-950 overflow-hidden">
-              <img 
-                src={product.image} 
-                alt={product.name}
-                className="w-full h-full object-cover object-center grayscale contrast-115 transition-transform duration-1000 group-hover:scale-105 group-hover:grayscale-0"
-              />
-            </div>
+    <section className="bg-black text-white w-full py-12 flex justify-center border-t border-zinc-900">
+      {/* Centered, desktop-constrained container */}
+      <div className="max-w-6xl w-full px-4 md:px-8">
+        
+        {/* Header Section */}
+        <div className="flex justify-between items-end mb-12 border-b border-zinc-900 pb-4 text-left">
+          <div>
+            <p className="text-zinc-500 font-mono text-[10px] uppercase tracking-widest mb-1">Curated Collection</p>
+            <h2 className="text-lg font-light tracking-widest text-zinc-100 uppercase">DROP_001 // THE CATALOG</h2>
+          </div>
+        </div>
 
-            {/* Subtle overlay mimicking a film grain/vignette shadow */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-85 z-10 transition-opacity duration-500 group-hover:opacity-70"></div>
-
-            {/* Glowing Accent Tags */}
-            {product.tag && (
-              <span className={`absolute top-28 left-6 z-20 text-white text-[9px] font-mono tracking-widest uppercase px-2.5 py-1 rounded-sm ${
-                product.tag === 'LIMITED' 
-                  ? 'bg-purple-600/80 border border-purple-500/40 shadow-[0_0_15px_rgba(168,85,247,0.4)]' 
-                  : 'bg-cyan-600/80 border border-cyan-500/40 shadow-[0_0_15px_rgba(6,182,212,0.4)]'
-              }`}>
-                {product.tag}
-              </span>
-            )}
-
-            {/* Overlay Metadata Shield */}
-            <div className="relative z-20 p-8 md:p-12 space-y-4 text-left flex flex-col justify-end h-1/2">
-              <div>
-                <p className="text-[10px] text-zinc-400 font-mono tracking-widest uppercase mb-1">{product.category}</p>
-                <h3 className="text-xl md:text-2xl font-light tracking-widest text-white uppercase mb-1.5 leading-tight group-hover:text-purple-300 transition duration-300">
-                  {product.name}
-                </h3>
-                {/* Accent colored price */}
-                <p className="text-sm font-mono text-purple-400 font-bold tracking-wider">{product.price}</p>
+        {/* 3-Column Spaced Desktop Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {LOOKBOOK_PRODUCTS.map((product) => (
+            <div 
+              key={product.id} 
+              className="flex flex-col justify-between bg-zinc-950/40 border border-zinc-900 p-5 hover:border-zinc-800 transition duration-300"
+            >
+              
+              {/* Product Image Wrapper - constrained aspect ratio */}
+              <div className="relative aspect-[3/4] w-full overflow-hidden bg-zinc-900 mb-4 border border-zinc-900">
+                {product.tag && (
+                  <span className="absolute top-3 left-3 z-10 bg-white text-black text-[9px] font-bold tracking-widest uppercase px-2 py-0.5">
+                    {product.tag}
+                  </span>
+                )}
+                <img 
+                  src={product.image} 
+                  alt={product.name}
+                  className="w-full h-full object-cover object-center grayscale hover:grayscale-0 transition duration-500"
+                />
               </div>
 
-              {/* Action Button: slide up on hover with glowing gradient */}
+              {/* Product Metadata */}
+              <div className="mb-4 text-left space-y-1">
+                <p className="text-[10px] text-zinc-500 font-mono tracking-wider">{product.category}</p>
+                <h3 className="text-sm font-normal tracking-wide text-zinc-200">
+                  {product.name}
+                </h3>
+                <p className="text-xs font-mono text-zinc-400 font-bold">{product.price}</p>
+              </div>
+
+              {/* CTA Button linked directly to Cart State */}
               <button 
                 onClick={() => addToCart(product)}
-                className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-mono text-[10px] uppercase tracking-widest py-3.5 transition-all duration-300 transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 shadow-[0_0_15px_rgba(168,85,247,0.3)] hover:shadow-[0_0_20px_rgba(168,85,247,0.5)] border-0"
+                className="w-full bg-zinc-900 hover:bg-white text-zinc-300 hover:text-black border border-zinc-800 hover:border-white font-mono text-[10px] uppercase tracking-widest py-3 transition-all duration-300"
               >
                 Acquire Asset
               </button>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+
       </div>
     </section>
   );

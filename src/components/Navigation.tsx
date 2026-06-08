@@ -10,46 +10,30 @@ export default function Navigation() {
 
   return (
     <>
-      {/* Sticky Premium Header Container */}
-      <header className="fixed top-0 left-0 right-0 z-40 flex flex-col transition-all duration-300">
+      {/* Clean, sticky top navigation bar with solid black background and thin bottom border */}
+      <header className="fixed top-0 left-0 right-0 z-40 bg-black border-b border-zinc-900 h-16 flex items-center px-6 justify-between transition-all duration-300">
+        <Link href="/" className="group">
+          <h1 className="text-xs font-bold tracking-[0.25em] text-white uppercase hover:text-zinc-400 transition-colors">
+            PREPGENIUS <span className="text-zinc-500 font-normal">STUDIOS</span>
+          </h1>
+        </Link>
         
-        {/* Infinite Horizontal Scrolling Banner (Text Ticker Marquee) */}
-        <div className="w-full bg-black border-b border-zinc-900 py-2 overflow-hidden flex items-center">
-          <div className="animate-marquee whitespace-nowrap text-[8px] font-mono tracking-[0.25em] text-zinc-500 uppercase flex gap-4">
-            <span>DROP_001 // AVAILABLE NOW // PREPGENIUS STUDIOS // CORE ARCHITECTURE // &nbsp;</span>
-            <span>DROP_001 // AVAILABLE NOW // PREPGENIUS STUDIOS // CORE ARCHITECTURE // &nbsp;</span>
-            <span>DROP_001 // AVAILABLE NOW // PREPGENIUS STUDIOS // CORE ARCHITECTURE // &nbsp;</span>
-            <span>DROP_001 // AVAILABLE NOW // PREPGENIUS STUDIOS // CORE ARCHITECTURE // &nbsp;</span>
-          </div>
-        </div>
-
-        {/* Main Navbar with backdrop blur */}
-        <div className="bg-black/60 backdrop-blur-md border-b border-zinc-900 px-6 py-5 flex justify-between items-center">
-          <Link href="/" className="group relative pb-1 after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-white after:transition-transform after:duration-300 hover:after:origin-bottom-left hover:after:scale-x-100">
-            <h1 className="text-sm font-black tracking-[0.25em] text-white uppercase transition-colors">
-              PREPGENIUS <span className="text-zinc-500 font-normal">STUDIOS</span>
-            </h1>
+        <div className="flex items-center gap-6">
+          <Link 
+            href="/admin" 
+            className="text-[10px] uppercase font-mono tracking-widest text-zinc-500 hover:text-zinc-300 transition-colors"
+          >
+            HQ Node
           </Link>
-          
-          <div className="flex items-center gap-4">
-            <Link 
-              href="/admin" 
-              className="text-[10px] uppercase font-mono tracking-widest text-zinc-500 hover:text-zinc-300 transition-colors pb-1 relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-white after:transition-transform after:duration-300 hover:after:origin-bottom-left hover:after:scale-x-100"
-            >
-              HQ Node
-            </Link>
-            <button
-              onClick={() => setIsDrawerOpen(true)}
-              className="text-xs font-mono tracking-widest uppercase border border-zinc-800 hover:border-zinc-700 px-4 py-2 bg-zinc-950/80 text-zinc-300 hover:text-white transition-all duration-300 flex items-center gap-2 rounded-sm group/btn"
-            >
-              <span className="relative pb-0.5 after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-white after:transition-transform after:duration-300 group-hover/btn:after:origin-bottom-left group-hover/btn:after:scale-x-100">
-                Bag
-              </span>
-              <span className="bg-white text-black text-[10px] font-bold px-1.5 py-0.5 rounded-sm">
-                {cartCount}
-              </span>
-            </button>
-          </div>
+          <button
+            onClick={() => setIsDrawerOpen(true)}
+            className="text-[10px] font-mono tracking-widest uppercase text-zinc-400 hover:text-white transition-all duration-300 flex items-center gap-2"
+          >
+            <span>Shopping Bag</span>
+            <span className="bg-zinc-900 text-zinc-300 border border-zinc-800 text-[9px] font-bold px-1.5 py-0.5 rounded-sm">
+              {cartCount}
+            </span>
+          </button>
         </div>
       </header>
 
@@ -63,7 +47,7 @@ export default function Navigation() {
           ></div>
 
           {/* Drawer Body */}
-          <div className="relative w-full max-w-md h-full bg-zinc-950 border-l border-zinc-900 p-6 flex flex-col justify-between shadow-2xl animate-slide-in">
+          <div className="relative w-full max-w-md h-full bg-zinc-950 border-l border-zinc-900 p-6 flex flex-col justify-between shadow-2xl">
             {/* Header */}
             <div className="flex justify-between items-center border-b border-zinc-900 pb-4 mb-6">
               <h2 className="text-xs font-mono tracking-widest text-zinc-400 uppercase text-left">Shopping Bag // ({cartCount})</h2>

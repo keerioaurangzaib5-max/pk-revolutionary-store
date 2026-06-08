@@ -22,19 +22,20 @@ export default function ProductGrid() {
 
         {/* 3-Column Spaced Desktop Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {LOOKBOOK_PRODUCTS.map((product) => (
+          {LOOKBOOK_PRODUCTS.map((product, index) => (
             <div 
               key={product.id} 
-              className="flex flex-col justify-between bg-zinc-950/30 border border-zinc-900 hover:border-zinc-800 p-5 transition-all duration-300 relative group"
+              style={{ animationDelay: `${index * 150}ms` }}
+              className="flex flex-col justify-between bg-[#0c0d0f]/40 border border-zinc-900 p-5 rounded-sm relative group border-glow-card animate-fade-in-up opacity-0"
             >
               
               {/* Product Image Wrapper - constrained aspect ratio with luxury hover scales */}
-              <div className="relative aspect-[3/4] w-full overflow-hidden bg-zinc-900 mb-4 border border-zinc-900">
+              <div className="relative aspect-[3/4] w-full overflow-hidden bg-zinc-955 mb-4 border border-zinc-900/60 rounded-sm">
                 {product.tag && (
-                  <span className={`absolute top-3 left-3 z-10 text-white text-[9px] font-mono tracking-widest uppercase px-2 py-0.5 rounded-sm ${
+                  <span className={`absolute top-3 left-3 z-10 text-black text-[9px] font-mono font-bold tracking-widest uppercase px-2 py-0.5 rounded-sm shadow-lg ${
                     product.tag === 'LIMITED' 
-                      ? 'bg-purple-600/90 border border-purple-500/40 shadow-[0_0_10px_rgba(168,85,247,0.3)]' 
-                      : 'bg-cyan-600/90 border border-cyan-500/40 shadow-[0_0_10px_rgba(6,182,212,0.3)]'
+                      ? 'bg-[#ff5500] border border-[#ff5500]/40 shadow-[0_0_12px_rgba(255,85,0,0.35)]' 
+                      : 'bg-[#00ffd5] border border-[#00ffd5]/40 shadow-[0_0_12px_rgba(0,255,213,0.35)]'
                   }`}>
                     {product.tag}
                   </span>
@@ -42,19 +43,19 @@ export default function ProductGrid() {
                 <img 
                   src={product.image} 
                   alt={product.name}
-                  className="w-full h-full object-cover object-center grayscale hover:grayscale-0 group-hover:scale-102 transition duration-700"
+                  className="w-full h-full object-cover object-center scale-100 group-hover:scale-105 transition-transform duration-700 ease-out grayscale group-hover:grayscale-0"
                 />
               </div>
 
               {/* Product Metadata */}
-              <div className="mb-4 text-left space-y-1">
-                <p className="text-[10px] text-zinc-500 font-mono tracking-wider">{product.category}</p>
-                <h3 className="text-sm font-normal tracking-wide text-zinc-200 group-hover:text-purple-300 transition duration-300">
+              <div className="mb-6 text-left space-y-1">
+                <p className="text-[9px] text-zinc-500 font-mono tracking-widest uppercase">{product.category}</p>
+                <h3 className="text-sm font-normal tracking-wide text-zinc-100 group-hover:text-[#ff5500] transition-colors duration-300">
                   {product.name}
                 </h3>
                 {/* Unified Price Output */}
-                <div className="flex gap-2 items-center pt-0.5">
-                  <span className="text-xs font-mono text-zinc-300 font-bold">${product.priceUSD.toFixed(2)}</span>
+                <div className="flex gap-2.5 items-center pt-1">
+                  <span className="text-xs font-mono text-white font-bold">${product.priceUSD.toFixed(2)}</span>
                   <span className="text-[10px] font-mono text-zinc-500">/ Rs. {product.pricePKR.toLocaleString()}</span>
                 </div>
               </div>
@@ -67,7 +68,7 @@ export default function ProductGrid() {
                   price: `$${product.priceUSD.toFixed(2)}`,
                   image: product.image
                 })}
-                className="w-full bg-zinc-900 hover:bg-white text-zinc-300 hover:text-black border border-zinc-800 hover:border-white font-mono text-[10px] uppercase tracking-widest py-3 transition-all duration-300"
+                className="w-full bg-[#050506] hover:bg-[#ff5500] text-zinc-400 hover:text-black border border-zinc-900 hover:border-[#ff5500] font-mono text-[10px] uppercase tracking-widest py-3.5 transition-all duration-300 kinetic-hover-btn"
               >
                 Acquire Asset
               </button>

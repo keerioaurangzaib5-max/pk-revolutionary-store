@@ -11,33 +11,33 @@
   --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: var(--font-geist-mono), monospace;
 
-  /* Premium Space Theme Palette */
-  --bg-base: #030303;
-  --bg-deep: #0a0814;
-  --bg-card: rgba(18, 16, 35, 0.65);
-  --bg-card-hover: rgba(26, 23, 50, 0.85);
-  --border-light: rgba(255, 255, 255, 0.08);
-  --border-glow: rgba(147, 51, 234, 0.2);
-  --border-active: rgba(147, 51, 234, 0.6);
+  /* Premium Tactical Techwear Palette */
+  --bg-base: #050506;
+  --bg-deep: #0c0d0f;
+  --bg-card: rgba(14, 15, 18, 0.7);
+  --bg-card-hover: rgba(22, 23, 27, 0.9);
+  --border-light: rgba(255, 255, 255, 0.06);
+  --border-glow: rgba(255, 85, 0, 0.15);
+  --border-active: rgba(255, 85, 0, 0.5);
 
-  --color-primary: #a855f7;       /* Glowing Purple */
-  --color-primary-dark: #7e22ce;
-  --color-secondary: #06b6d4;     /* Cyan */
-  --color-text: #f3f4f6;
-  --color-text-muted: #9ca3af;
-  --color-text-dim: #6b7280;
+  --color-primary: #ff5500;       /* Tactical Techwear Orange */
+  --color-primary-dark: #cc3300;
+  --color-secondary: #00ffd5;     /* Cyber Cyan */
+  --color-text: #f1f2f6;
+  --color-text-muted: #8b909a;
+  --color-text-dim: #5c6068;
 
   /* Status Colors */
-  --color-success: #10b981;
-  --color-success-bg: rgba(16, 185, 129, 0.1);
+  --color-success: #00ffd5;
+  --color-success-bg: rgba(0, 255, 213, 0.08);
   --color-warning: #f59e0b;
-  --color-warning-bg: rgba(245, 158, 11, 0.1);
+  --color-warning-bg: rgba(245, 158, 11, 0.08);
   --color-error: #ef4444;
-  --color-error-bg: rgba(239, 68, 68, 0.1);
+  --color-error-bg: rgba(239, 68, 68, 0.08);
   
-  --shadow-glow: 0 0 20px rgba(168, 85, 247, 0.15);
-  --shadow-glow-cyan: 0 0 20px rgba(6, 182, 212, 0.15);
-  --shadow-card: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 20px rgba(255, 85, 0, 0.15);
+  --shadow-glow-cyan: 0 0 20px rgba(0, 255, 213, 0.15);
+  --shadow-card: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
 }
 
 body {
@@ -520,3 +520,118 @@ body {
   width: max-content;
   animation: marquee 25s linear infinite;
 }
+
+/* -------------------------------------------------------------------------- */
+/* Premium Techwear Micro-Animations & Interactions */
+/* -------------------------------------------------------------------------- */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animation-delay-100 {
+  animation-delay: 100ms;
+}
+
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animation-delay-300 {
+  animation-delay: 300ms;
+}
+
+/* Link Hover Underline (Left-to-Right Draw) */
+.link-hover-underline {
+  position: relative;
+}
+
+.link-hover-underline::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--color-primary);
+  transform-origin: bottom right;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.link-hover-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Kinetic Hover Button (Slide-up Fill effect) */
+.kinetic-hover-btn {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+}
+
+.kinetic-hover-btn::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-primary);
+  z-index: -1;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(0);
+}
+
+.kinetic-hover-btn:hover {
+  color: #000 !important;
+  border-color: var(--color-primary) !important;
+}
+
+.kinetic-hover-btn:hover::before {
+  transform: translateY(-100%);
+}
+
+/* Cyber Pulse Wave for Voice Simulation */
+@keyframes cyberPulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(255, 85, 0, 0.5);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 12px rgba(255, 85, 0, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(255, 85, 0, 0);
+  }
+}
+
+.cyber-pulse-active {
+  animation: cyberPulse 2s infinite;
+}
+
+/* Card Glow Hover Overlay */
+.border-glow-card {
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.border-glow-card:hover {
+  border-color: rgba(255, 85, 0, 0.4) !important;
+  box-shadow: var(--shadow-card), var(--shadow-glow);
+}
+

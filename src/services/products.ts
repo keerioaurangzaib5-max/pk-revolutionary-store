@@ -20,7 +20,7 @@ export const LOOKBOOK_PRODUCTS: Product[] = [
     category: 'Outerwear // Drop 001',
     priceUSD: 240.00,
     pricePKR: calculatePakistaniRetailPrice(240.00), // ~100,080 PKR based on markup
-    image: 'https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?q=80&w=600&auto=format&fit=crop',
+    image: '/images/jacket.png',
     tag: 'LIMITED',
     stockAvailable: 14
   },
@@ -31,7 +31,7 @@ export const LOOKBOOK_PRODUCTS: Product[] = [
     category: 'Trousers // Drop 001',
     priceUSD: 180.00,
     pricePKR: calculatePakistaniRetailPrice(180.00),
-    image: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=600&auto=format&fit=crop',
+    image: '/images/pants.png',
     stockAvailable: 8
   },
   {
@@ -41,7 +41,7 @@ export const LOOKBOOK_PRODUCTS: Product[] = [
     category: 'Accessories // Drop 001',
     priceUSD: 45.00,
     pricePKR: calculatePakistaniRetailPrice(45.00),
-    image: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=600&auto=format&fit=crop',
+    image: '/images/cap.png',
     tag: 'RESTOCK',
     stockAvailable: 42
   }

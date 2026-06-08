@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
+import { useCart } from '@/context/CartContext';
 
 interface Product {
   id: string;
@@ -38,65 +39,65 @@ const LOOKBOOK_PRODUCTS: Product[] = [
 ];
 
 export default function ProductGrid() {
-  const [cartCount, setCartCount] = useState(0);
+  const { addToCart } = useCart();
+  const [isMounted, setIsMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   return (
-    <section className="bg-black text-white py-20 px-6 md:px-16 border-t border-zinc-900 w-full">
-      {/* 🎯 THIS CONTAINER SECTIONS WRAPS EVERYTHING TO CENTER IT */}
-      <div className="max-w-6xl mx-auto">
-        
-        {/* Header Section */}
-        <div className="flex justify-between items-end mb-16 border-b border-zinc-900 pb-6">
-          <div>
-            <p className="text-zinc-500 font-mono text-xs uppercase tracking-widest mb-2">Curated Collection</p>
-            <h2 className="text-xl md:text-2xl font-light tracking-widest text-zinc-100">DROP_001 // THE CORE ARCHITECTURE</h2>
-          </div>
-          <div className="text-right">
-            <span className="text-xs font-mono tracking-widest uppercase border border-zinc-800 px-4 py-1.5 bg-zinc-950 text-zinc-400">
-              Bag ({cartCount})
-            </span>
-          </div>
-        </div>
+    <section className="bg-black text-white w-full min-h-screen px-0 py-0 border-t border-zinc-900 overflow-hidden">
+      {/* Forced 3-Column Zero-Gap Grid displaying solid imagery wall */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-0 w-full min-h-screen">
+        {LOOKBOOK_PRODUCTS.map((product, index) => (
+          <div 
+            key={product.id} 
+            className={`group relative flex flex-col justify-end w-full h-[85vh] md:h-screen overflow-hidden border-b md:border-b-0 md:border-r border-zinc-900 last:border-0 transition-all duration-1000 ease-out ${
+              isMounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            } ${
+              index === 1 ? 'delay-150' : index === 2 ? 'delay-300' : ''
+            }`}
+          >
+            {/* Absolute Full Height/Width Image */}
+            <div className="absolute inset-0 w-full h-full bg-zinc-950 overflow-hidden">
+              <img 
+                src={product.image} 
+                alt={product.name}
+                className="w-full h-full object-cover object-center grayscale contrast-115 transition-transform duration-1000 group-hover:scale-105 group-hover:grayscale-0"
+              />
+            </div>
 
-        {/* 🎯 FORCED 3-COLUMN GRID DISPLAY */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6">
-          {LOOKBOOK_PRODUCTS.map((product) => (
-            <div key={product.id} className="group relative flex flex-col justify-between bg-zinc-950 border border-zinc-900 p-4 transition-all duration-300 hover:border-zinc-800">
-              
-              {/* Product Image Wrapper - Sized to a clean aspect ratio */}
-              <div className="relative aspect-[3/4] w-full overflow-hidden bg-zinc-900 mb-4">
-                {product.tag && (
-                  <span className="absolute top-3 left-3 z-10 bg-white text-black text-[9px] font-bold tracking-widest uppercase px-2 py-0.5">
-                    {product.tag}
-                  </span>
-                )}
-                <img 
-                  src={product.image} 
-                  alt={product.name}
-                  className="w-full h-full object-cover object-center grayscale contrast-115 transition-transform duration-700 group-hover:scale-102 group-hover:grayscale-0"
-                />
-              </div>
+            {/* Subtle overlay mimicking a film grain/vignette shadow */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 z-10 transition-opacity duration-500 group-hover:opacity-60"></div>
 
-              {/* Product Metadata */}
-              <div className="mb-4">
-                <p className="text-[11px] text-zinc-500 font-mono tracking-wider mb-1">{product.category}</p>
-                <h3 className="text-sm font-normal tracking-wide text-zinc-200 mb-1">
+            {/* Tag Badge */}
+            {product.tag && (
+              <span className="absolute top-28 left-6 z-20 bg-white text-black text-[9px] font-black tracking-widest uppercase px-2 py-0.5">
+                {product.tag}
+              </span>
+            )}
+
+            {/* Overlay Metadata Shield */}
+            <div className="relative z-20 p-8 md:p-12 space-y-4 text-left flex flex-col justify-end h-1/2">
+              <div>
+                <p className="text-[10px] text-zinc-400 font-mono tracking-widest uppercase mb-1">{product.category}</p>
+                <h3 className="text-xl md:text-2xl font-light tracking-widest text-white uppercase mb-1.5 leading-tight">
                   {product.name}
                 </h3>
-                <p className="text-xs font-mono text-zinc-400">{product.price}</p>
+                <p className="text-sm font-mono text-zinc-300 font-bold">{product.price}</p>
               </div>
 
-              {/* CTA Button */}
+              {/* Action Button: slide up on hover */}
               <button 
-                onClick={() => setCartCount(prev => prev + 1)}
-                className="w-full bg-zinc-900 hover:bg-white text-zinc-300 hover:text-black border border-zinc-800 hover:border-white font-mono text-[11px] uppercase tracking-widest py-3 transition-all duration-300"
+                onClick={() => addToCart(product)}
+                className="w-full bg-white text-black border border-white hover:bg-black hover:text-white font-mono text-[10px] uppercase tracking-widest py-3.5 transition-all duration-300 transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100"
               >
                 Acquire Asset
               </button>
             </div>
-          ))}
-        </div>
-
+          </div>
+        ))}
       </div>
     </section>
   );

@@ -493,3 +493,32 @@ body {
     text-shadow: 0 0 20px rgba(239, 68, 68, 0.6);
   }
 }
+
+@keyframes bg-gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.bg-animate {
+  background-size: 200% 200%;
+  animation: bg-gradient-shift 8s ease infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}

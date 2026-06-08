@@ -69,11 +69,15 @@ export default function ProductGrid() {
             </div>
 
             {/* Subtle overlay mimicking a film grain/vignette shadow */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 z-10 transition-opacity duration-500 group-hover:opacity-60"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-85 z-10 transition-opacity duration-500 group-hover:opacity-70"></div>
 
-            {/* Tag Badge */}
+            {/* Glowing Accent Tags */}
             {product.tag && (
-              <span className="absolute top-28 left-6 z-20 bg-white text-black text-[9px] font-black tracking-widest uppercase px-2 py-0.5">
+              <span className={`absolute top-28 left-6 z-20 text-white text-[9px] font-mono tracking-widest uppercase px-2.5 py-1 rounded-sm ${
+                product.tag === 'LIMITED' 
+                  ? 'bg-purple-600/80 border border-purple-500/40 shadow-[0_0_15px_rgba(168,85,247,0.4)]' 
+                  : 'bg-cyan-600/80 border border-cyan-500/40 shadow-[0_0_15px_rgba(6,182,212,0.4)]'
+              }`}>
                 {product.tag}
               </span>
             )}
@@ -82,16 +86,17 @@ export default function ProductGrid() {
             <div className="relative z-20 p-8 md:p-12 space-y-4 text-left flex flex-col justify-end h-1/2">
               <div>
                 <p className="text-[10px] text-zinc-400 font-mono tracking-widest uppercase mb-1">{product.category}</p>
-                <h3 className="text-xl md:text-2xl font-light tracking-widest text-white uppercase mb-1.5 leading-tight">
+                <h3 className="text-xl md:text-2xl font-light tracking-widest text-white uppercase mb-1.5 leading-tight group-hover:text-purple-300 transition duration-300">
                   {product.name}
                 </h3>
-                <p className="text-sm font-mono text-zinc-300 font-bold">{product.price}</p>
+                {/* Accent colored price */}
+                <p className="text-sm font-mono text-purple-400 font-bold tracking-wider">{product.price}</p>
               </div>
 
-              {/* Action Button: slide up on hover */}
+              {/* Action Button: slide up on hover with glowing gradient */}
               <button 
                 onClick={() => addToCart(product)}
-                className="w-full bg-white text-black border border-white hover:bg-black hover:text-white font-mono text-[10px] uppercase tracking-widest py-3.5 transition-all duration-300 transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100"
+                className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-mono text-[10px] uppercase tracking-widest py-3.5 transition-all duration-300 transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 shadow-[0_0_15px_rgba(168,85,247,0.3)] hover:shadow-[0_0_20px_rgba(168,85,247,0.5)] border-0"
               >
                 Acquire Asset
               </button>

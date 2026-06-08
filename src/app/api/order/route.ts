@@ -1,44 +1,31 @@
 import { NextResponse } from 'next/server';
+import { OrderInputSchema } from '@/types/shop';
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
     
-    // Support both direct fields and nested checkout page payload structures
-    const name = body.name || body.customerName;
-    const phone = body.phone;
-    const address = body.address || body.shippingAddress;
-    const voiceTranscript = body.voiceTranscript || body.voice_transcript;
+    // Normalize properties for validation
+    const normalizedBody = {
+      name: body.name || body.customerName,
+      phone: body.phone,
+      address: body.address || body.shippingAddress,
+      voiceTranscript: body.voiceTranscript || body.voice_transcript,
+      cartItems: body.cartItems
+    };
 
-    // Defensive validation check for missing fields
-    const missingFields: string[] = [];
-    if (!name) missingFields.push('name');
-    if (!phone) missingFields.push('phone');
-    if (!address) missingFields.push('address');
-
-    if (missingFields.length > 0) {
+    // Zod Safe Parse Guard
+    const validation = OrderInputSchema.safeParse(normalizedBody);
+    if (!validation.success) {
+      // Gather Zod validation error messages cleanly
+      const errorMessage = validation.error.issues.map(err => err.message).join(' | ');
       return NextResponse.json({
         success: false,
-        error: `Required order fields are missing: [${missingFields.join(', ')}].`
+        error: errorMessage
       }, { status: 400 });
     }
 
-    // Pakistani phone number format verification (03xxxxxxxx or +923xxxxxxxxx)
-    const phoneRegex = /^((\+92)|(0092)|(0))?3\d{9}$/;
-    if (!phoneRegex.test(phone)) {
-      return NextResponse.json({
-        success: false,
-        error: 'Kindly provide a valid Pakistani mobile number (e.g., 03001234567).'
-      }, { status: 400 });
-    }
-
-    // Safe address length check
-    if (address.length < 15) {
-      return NextResponse.json({
-        success: false,
-        error: 'The address is too short. Please provide a detailed address (minimum 15 characters).'
-      }, { status: 400 });
-    }
+    const { name, phone, address, voiceTranscript } = validation.data;
 
     // Generate a secure, trackable Pakistani regional Order Identifier
     const trackingID = `PK-${Date.now()}-${Math.floor(Math.random() * 1000)}`;

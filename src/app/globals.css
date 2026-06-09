@@ -627,11 +627,59 @@ body {
 
 /* Card Glow Hover Overlay */
 .border-glow-card {
-  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .border-glow-card:hover {
-  border-color: rgba(255, 85, 0, 0.4) !important;
-  box-shadow: var(--shadow-card), var(--shadow-glow);
+  border-color: rgba(255, 85, 0, 0.35) !important;
+  box-shadow: var(--shadow-card), 0 12px 30px rgba(255, 85, 0, 0.08);
+  transform: translateY(-4px);
 }
+
+/* Dribbble-Grade rounded corners and inputs styling */
+.dribbble-input {
+  border-radius: 9999px;
+  background-color: #0c0d0f;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease;
+}
+
+.dribbble-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 15px rgba(255, 85, 0, 0.1);
+  background-color: #000;
+}
+
+/* Category Filter Capsules */
+.filter-capsule {
+  border-radius: 9999px;
+  padding: 0.6rem 1.4rem;
+  font-size: 0.75rem;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.filter-capsule.active {
+  background-color: var(--color-primary);
+  color: #000 !important;
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 15px rgba(255, 85, 0, 0.25);
+}
+
+/* Testimonial slider layouts */
+.testimonial-badge {
+  background: rgba(255, 85, 0, 0.08);
+  border: 1px solid rgba(255, 85, 0, 0.2);
+  color: var(--color-primary);
+}
+
+.glow-pill-accent {
+  background: rgba(0, 255, 213, 0.05);
+  border: 1px solid rgba(0, 255, 213, 0.15);
+  color: var(--color-secondary);
+}
+
 
